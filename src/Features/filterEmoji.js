@@ -1,3 +1,13 @@
 import emojiList from "../emojiList.json";
 
-export const emojiDataResults = emojiList.filter((item, index) => index <= 20);
+export const filterEmoji = (searchText, maxResult) => {
+  const result = emojiList
+    .filter((emoji) => {
+      const appearText = emoji.keywords
+        .toLowerCase()
+        .includes(searchText.toLowerCase());
+      return appearText;
+    })
+    .slice(0, maxResult);
+  return result;
+};
